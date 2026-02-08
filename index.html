@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenClaw Services — Automation, Data, Monitoring (USDC/USDT)</title>
+    <meta name="description" content="We build operational bots (automation, scraping/ETL, monitoring) with fixed pricing and crypto payments (USDC/USDT)." />
+    <style>
+      :root { color-scheme: dark; --bg:#0b1220; --card:#101a2e; --text:#e7eefc; --muted:#aab7d6; --accent:#7c5cff; --accent2:#22c55e; }
+      *{ box-sizing:border-box; }
+      body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background:var(--bg); color:var(--text); }
+      a{ color:inherit; }
+      .wrap{ max-width:1024px; margin:0 auto; padding:28px 18px 80px; }
+      header{ display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+      .brand{ font-weight:700; letter-spacing:.2px; }
+      .pill{ display:inline-block; padding:6px 10px; border:1px solid rgba(255,255,255,.14); border-radius:999px; color:var(--muted); font-size:13px; }
+      .hero{ margin-top:22px; display:grid; gap:16px; grid-template-columns: 1.4fr .9fr; }
+      @media (max-width: 900px){ .hero{ grid-template-columns:1fr; } }
+      .card{ background:var(--card); border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:18px; }
+      h1{ margin:10px 0 8px; font-size:36px; line-height:1.1; }
+      h2{ margin:26px 0 12px; font-size:22px; }
+      h3{ margin:0 0 8px; font-size:18px; }
+      p{ margin:10px 0; color:var(--muted); }
+      .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+      .btn{ display:inline-block; padding:10px 14px; border-radius:12px; text-decoration:none; border:1px solid rgba(255,255,255,.14); }
+      .btn.primary{ background:linear-gradient(90deg,var(--accent),#4f46e5); border:none; color:white; }
+      .btn.green{ background:linear-gradient(90deg,var(--accent2),#16a34a); border:none; color:#04130a; font-weight:700; }
+      .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+      @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+      ul{ margin:10px 0 0 18px; color:var(--muted); }
+      .small{ font-size:13px; color:var(--muted); }
+      label{ display:block; margin:10px 0 6px; font-size:13px; color:var(--muted); }
+      input, textarea, select{ width:100%; padding:10px 12px; border-radius:12px; background:#0a1020; border:1px solid rgba(255,255,255,.14); color:var(--text); }
+      textarea{ min-height: 110px; }
+      .two{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      @media (max-width: 900px){ .two{ grid-template-columns:1fr; } }
+      footer{ margin-top:26px; }
+      .hr{ height:1px; background:rgba(255,255,255,.12); margin:22px 0; }
+      .lang{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+      @media (max-width: 900px){ .lang{ grid-template-columns:1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">◈ OpenClaw Services</div>
+        <div class="pill">Fixed packages • Delivered fast • Pay in USDC/USDT</div>
+      </header>
+
+      <section class="hero">
+        <div class="card">
+          <div class="lang">
+            <div>
+              <h1>ES: Bots operativos que te devuelven horas cada semana.</h1>
+              <p>
+                Implementamos automatización (RPA + integraciones), scraping/ETL y monitoring con alertas.
+                Entregables claros, precio fijo y mantenimiento mensual.
+              </p>
+            </div>
+            <div>
+              <h1>EN: Operational bots that give you hours back every week.</h1>
+              <p>
+                We build automation (RPA + integrations), scraping/ETL pipelines, and monitoring with alerts.
+                Clear deliverables, fixed pricing, optional monthly maintenance.
+              </p>
+            </div>
+          </div>
+
+          <div class="btns">
+            <a class="btn primary" href="#packages">See packages</a>
+            <a class="btn green" href="#onboarding">Request an invoice / Start</a>
+            <a class="btn" href="#pay">Pay in USDC/USDT</a>
+          </div>
+
+          <p class="small">Built with OpenClaw (browser + APIs + orchestration). No spam, no shady scraping, no TOS violations.</p>
+        </div>
+
+        <div class="card">
+          <h3>What you get (always)</h3>
+          <ul>
+            <li>Production go-live + runbook</li>
+            <li>Telegram/email alerts for failures</li>
+            <li>Simple metrics (runs, errors, last success)</li>
+            <li>Clear scope + out-of-scope</li>
+          </ul>
+          <div class="hr"></div>
+          <h3>Fast fit check</h3>
+          <p class="small">If you tell us the process + tools, we’ll reply with “Sprint / Radar / Watchtower” + exact next steps.</p>
+        </div>
+      </section>
+
+      <section id="packages">
+        <h2>Packages / Paquetes</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>1) Automation Sprint</h3>
+            <p><strong>10 business days</strong> → 2 workflows in production + dashboard + alerts.</p>
+            <ul>
+              <li>Onboarding, reporting, syncs (Sheets/Notion/HubSpot/etc.)</li>
+              <li>Runbook + handoff</li>
+            </ul>
+            <p><strong>US$2,500 setup</strong> • Optional <strong>US$750/mo</strong></p>
+          </div>
+
+          <div class="card">
+            <h3>2) Data Radar</h3>
+            <p>Scraping + normalization + enrichment + scheduled exports.</p>
+            <ul>
+              <li>1 main source (+ variants)</li>
+              <li>Outputs: CSV / Sheets / webhook</li>
+            </ul>
+            <p><strong>US$3,500 setup</strong> • <strong>US$900/mo</strong></p>
+          </div>
+
+          <div class="card">
+            <h3>3) Watchtower</h3>
+            <p>Monitoring + actionable alerts (web/e2e/content/on-chain read-only).</p>
+            <ul>
+              <li>Up to 10 monitors</li>
+              <li>Weekly 1-page report</li>
+            </ul>
+            <p><strong>US$1,500/mo</strong> (2-month minimum)</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pay">
+        <h2>Pay in crypto (USDC/USDT)</h2>
+        <div class="card">
+          <p><strong>ES:</strong> Aceptamos USDC/USDT. Pedí invoice por el formulario y te enviamos address + red + memo (si aplica).</p>
+          <p><strong>EN:</strong> We accept USDC/USDT. Request an invoice in the form and we’ll send address + network + memo (if needed).</p>
+          <div class="two">
+            <div>
+              <label>USDC address (placeholder)</label>
+              <input value="USDC_ADDRESS_HERE" readonly />
+            </div>
+            <div>
+              <label>USDT address (placeholder)</label>
+              <input value="USDT_ADDRESS_HERE" readonly />
+            </div>
+          </div>
+          <p class="small">Networks supported: to be agreed (e.g., Ethereum / Arbitrum / Tron). Always confirm the network before sending.</p>
+        </div>
+      </section>
+
+      <section id="onboarding">
+        <h2>Onboarding form / Formulario</h2>
+        <div class="card">
+          <p class="small">
+            This is a static form template. Connect it to Formspree/Make/Zapier or replace the action with your own endpoint.
+            (Current action is a placeholder.)
+          </p>
+
+          <form method="post" action="https://formspree.io/f/YOUR_FORM_ID">
+            <div class="two">
+              <div>
+                <label>Name / Nombre</label>
+                <input name="name" placeholder="Your name" required />
+              </div>
+              <div>
+                <label>Company / Empresa</label>
+                <input name="company" placeholder="Company" />
+              </div>
+            </div>
+
+            <div class="two">
+              <div>
+                <label>Telegram</label>
+                <input name="telegram" placeholder="@handle" />
+              </div>
+              <div>
+                <label>Email</label>
+                <input name="email" placeholder="you@company.com" required />
+              </div>
+            </div>
+
+            <label>What do you want to automate/monitor? / ¿Qué querés automatizar/monitorear?</label>
+            <textarea name="problem" placeholder="Describe the process + tools (Notion/Sheets/HubSpot/etc.)." required></textarea>
+
+            <div class="two">
+              <div>
+                <label>Urgency / Urgencia</label>
+                <select name="urgency">
+                  <option>This week / Esta semana</option>
+                  <option>This month / Este mes</option>
+                  <option>Not urgent / No urgente</option>
+                </select>
+              </div>
+              <div>
+                <label>Budget / Presupuesto</label>
+                <select name="budget">
+                  <option>$1k–$3k</option>
+                  <option>$3k–$7k</option>
+                  <option>$7k+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="two">
+              <div>
+                <label>Payment / Pago</label>
+                <select name="payment">
+                  <option>USDC</option>
+                  <option>USDT</option>
+                  <option>Invoice (fiat) + crypto settlement</option>
+                </select>
+              </div>
+              <div>
+                <label>Preferred network / Red preferida</label>
+                <input name="network" placeholder="Arbitrum / Tron / Ethereum" />
+              </div>
+            </div>
+
+            <div class="btns">
+              <button class="btn primary" type="submit">Send / Enviar</button>
+              <a class="btn" href="#packages">Back to packages</a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <div class="hr"></div>
+        <p class="small">© OpenClaw Services — Draft landing. Replace placeholders (URL, wallets, Form ID) before publishing.</p>
+      </footer>
+    </div>
+  </body>
+</html>
