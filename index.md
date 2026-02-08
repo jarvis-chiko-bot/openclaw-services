@@ -1,28 +1,55 @@
-# OpenClaw Services — bots operativos que ahorran tiempo (y se pagan en USDC/USDT)
+# OpenClaw Setup Express (48h) — tu “Jarvis” operativo en Telegram (pago en USDC/USDT)
 
-**ES**: Implementamos automatizaciones, scrapers/ETL y monitoring con alertas — con entregables claros, precio fijo y mantenimiento mensual.
+**Principal (negocios):** en **48 horas** te dejamos un bot operativo (OpenClaw) con **2 automatizaciones** que reducen tiempo perdido y te dan trazabilidad.
 
-**EN**: We build operational bots (automation, scraping/ETL, monitoring) with clear deliverables, fixed pricing, and monthly maintenance.
+**También (particulares):** la misma idea, pero para productividad personal / side-business.
 
 ---
 
-## Paquetes
+## Lo que incluye (siempre)
+- Setup + configuración base
+- **2 automatizaciones** (workflows) listas
+- Alertas (Telegram/email) + logs básicos
+- Runbook + handoff (mini doc)
 
-### 1) OpenClaw Automation Sprint (10 días)
-- 2 workflows en producción (RPA + integraciones)
-- 1 dashboard operativo + alertas
-- Runbook + handoff
-- **US$2,500 setup** + **US$750/mo** (opcional)
+> Sin spam, sin “scraping shady”, sin violar TOS. Solo automatización útil.
 
-### 2) OpenClaw Data Radar (Scraping + Enrichment)
-- 1 fuente principal + normalización + outputs
-- Scheduler + logs + alertas
-- **US$3,500 setup** + **US$900/mo**
+---
 
-### 3) OpenClaw Watchtower (Monitoring + Alerts)
-- Hasta 10 monitores (web/e2e/cambios/on‑chain lectura)
-- Reporte semanal
-- **US$1,500/mo** (mínimo 2 meses)
+## Paquetes (48h)
+
+### Express Business — **US$1,500**
+- 2 automatizaciones orientadas a negocio (leads/ops/reporting)
+- 2 integraciones (Sheets/Calendar/Gmail/CRM básico/Webhook)
+- Roles/targets (quién recibe qué)
+- **7 días de soporte** post-entrega
+
+### Express Pro — **US$999**
+- 2 automatizaciones + 1 integración
+- Alertas + logs
+
+### Express Personal — **US$750**
+- 2 automatizaciones personales (briefing diario + inbox-to-action)
+- Handoff simple
+
+---
+
+## Ejemplos de automatizaciones
+
+### Para negocios (default en el setup)
+1) **Leads → follow-up → reporte**
+- Captura leads (form/Sheets/Telegram)
+- Follow-ups automáticos + recordatorios
+- Resumen semanal al dueño
+
+2) **Ops/soporte → tickets livianos → alertas**
+- Intake por Telegram
+- Routing a responsable
+- Resumen diario + alertas si algo se traba
+
+### Para particulares
+1) **Daily briefing** (agenda + tareas + links)
+2) **Inbox-to-action** (reenviás links/mensajes → tareas/recordatorios)
 
 ---
 
@@ -47,3 +74,11 @@ Campos sugeridos:
 - Urgencia (esta semana / este mes)
 - Presupuesto
 - Preferencia de pago (USDC/USDT + red)
+
+---
+
+## Otros servicios (si querés algo más grande)
+Si el Setup Express te queda corto, también hacemos:
+- **Automation Sprint (10 días)**: 2 workflows + dashboard + alertas
+- **Data Radar**: scraping/ETL + enrichment + exports
+- **Watchtower**: monitoring + alertas + reporte semanal
