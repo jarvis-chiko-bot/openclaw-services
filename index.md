@@ -1,84 +1,49 @@
-# OpenClaw Setup Express (48h) — tu “Jarvis” operativo en Telegram (pago en USDC/USDT)
+# OpenClaw Setup Express (48h)
 
-**Principal (negocios):** en **48 horas** te dejamos un bot operativo (OpenClaw) con **2 automatizaciones** que reducen tiempo perdido y te dan trazabilidad.
+**Principal: negocios.** En 48h te montamos tu bot operativo en Telegram con **2 automatizaciones**, **alertas** y **handoff**.
 
-**También (particulares):** la misma idea, pero para productividad personal / side-business.
-
----
-
-## Lo que incluye (siempre)
-- Setup + configuración base
-- **2 automatizaciones** (workflows) listas
-- Alertas (Telegram/email) + logs básicos
-- Runbook + handoff (mini doc)
-
-> Sin spam, sin “scraping shady”, sin violar TOS. Solo automatización útil.
+> Pagos en USDC/USDT (red a acordar).
 
 ---
 
 ## Paquetes (48h)
 
-### Express Business — **US$1,500**
-- 2 automatizaciones orientadas a negocio (leads/ops/reporting)
-- 2 integraciones (Sheets/Calendar/Gmail/CRM básico/Webhook)
+### Express Business — US$1,500 (recomendado)
+- 2 workflows de negocio (leads/ops/reporting)
+- 2 integraciones (Sheets/Calendar/Gmail/CRM/Webhook)
 - Roles/targets (quién recibe qué)
-- **7 días de soporte** post-entrega
+- 7 días de soporte post-entrega
 
-### Express Pro — **US$999**
-- 2 automatizaciones + 1 integración
+### Express Pro — US$999
+- 2 workflows + 1 integración
 - Alertas + logs
 
-### Express Personal — **US$750**
-- 2 automatizaciones personales (briefing diario + inbox-to-action)
+### Express Personal — US$750
+- Briefing diario + inbox-to-action
 - Handoff simple
 
 ---
 
-## Ejemplos de automatizaciones
-
-### Para negocios (default en el setup)
-1) **Leads → follow-up → reporte**
-- Captura leads (form/Sheets/Telegram)
-- Follow-ups automáticos + recordatorios
-- Resumen semanal al dueño
-
-2) **Ops/soporte → tickets livianos → alertas**
-- Intake por Telegram
-- Routing a responsable
-- Resumen diario + alertas si algo se traba
-
-### Para particulares
-1) **Daily briefing** (agenda + tareas + links)
-2) **Inbox-to-action** (reenviás links/mensajes → tareas/recordatorios)
+## Casos
+- Negocios: Leads → follow-up → reporte semanal
+- Negocios: Ops/soporte → routing → alertas
+- Particulares: Briefing + inbox-to-action
 
 ---
 
-## Pagar en cripto
-Aceptamos **USDC/USDT** (red a acordar). Para pagar:
-1) Pedí invoice por el formulario.
-2) Te enviamos address + memo (si aplica).
-
-> Placeholder wallets: `USDC_ADDRESS_HERE` / `USDT_ADDRESS_HERE`
+## Mantenimiento mensual (opcional)
+Se cotiza aparte: monitoreo, fixes y horas de mejoras. El setup es one-time y te deja operando.
 
 ---
 
-## Onboarding (form)
-Copiá este formulario a Typeform/Tally o conectalo con Formspree.
+## Onboarding
+Usá Typeform/Tally o conectalo con Formspree.
 
-Campos sugeridos:
+Campos:
 - Nombre / Empresa
-- Telegram handle / Email
-- ¿Qué querés automatizar o monitorear?
-- Herramientas actuales (Notion/Sheets/HubSpot/etc.)
-- Links relevantes
-- Urgencia (esta semana / este mes)
+- Telegram / Email
+- Proceso a automatizar + herramientas
+- Urgencia
 - Presupuesto
-- Preferencia de pago (USDC/USDT + red)
-
----
-
-## Otros servicios (si querés algo más grande)
-Si el Setup Express te queda corto, también hacemos:
-- **Automation Sprint (10 días)**: 2 workflows + dashboard + alertas
-- **Data Radar**: scraping/ETL + enrichment + exports
-- **Watchtower**: monitoring + alertas + reporte semanal
+- Paquete
+- Pago (USDC/USDT) + red

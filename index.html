@@ -1,499 +1,712 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>OpenClaw Setup Express (48h) — Telegram Ops Bot (USDC/USDT)</title>
+    <meta name="theme-color" content="#070b14" />
+
+    <title>OpenClaw Setup Express (48h) — Tu bot operativo en Telegram</title>
     <meta
       name="description"
-      content="In 48 hours, we set up your operational Telegram bot (OpenClaw) with 2 automations, alerts, and handoff. Fixed pricing. Pay in USDC/USDT."
+      content="En 48 horas te montamos tu bot operativo en Telegram (OpenClaw) con 2 automatizaciones, alertas y handoff. Precio fijo. Pagos en USDC/USDT."
     />
+
     <style>
       :root {
         color-scheme: dark;
-        --bg: #0b1220;
-        --card: #101a2e;
-        --text: #e7eefc;
-        --muted: #aab7d6;
+        --bg0: #070b14;
+        --bg1: #0b1220;
+        --card: rgba(16, 26, 46, 0.72);
+        --card2: rgba(16, 26, 46, 0.9);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: #eaf0ff;
+        --muted: rgba(234, 240, 255, 0.72);
+        --muted2: rgba(234, 240, 255, 0.55);
         --accent: #7c5cff;
         --accent2: #22c55e;
-        --warn: #fbbf24;
+        --danger: #fb7185;
+        --shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
+        --radius: 18px;
       }
+
       * {
         box-sizing: border-box;
       }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
         font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
           Helvetica, Arial;
-        background: var(--bg);
         color: var(--text);
+        background:
+          radial-gradient(1000px 520px at 10% 0%, rgba(124, 92, 255, 0.22),
+            transparent 60%),
+          radial-gradient(900px 520px at 100% 10%, rgba(34, 197, 94, 0.14),
+            transparent 55%),
+          radial-gradient(700px 420px at 50% 110%, rgba(251, 113, 133, 0.11),
+            transparent 55%),
+          linear-gradient(180deg, var(--bg0), var(--bg1));
       }
+
       a {
         color: inherit;
       }
+
       .wrap {
-        max-width: 1024px;
+        max-width: 1040px;
         margin: 0 auto;
-        padding: 28px 18px 80px;
+        padding: 22px 18px 96px;
       }
+
+      .skip {
+        position: absolute;
+        left: -999px;
+        top: 12px;
+        padding: 10px 12px;
+        background: #0a1020;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--text);
+        text-decoration: none;
+        z-index: 999;
+      }
+      .skip:focus {
+        left: 14px;
+      }
+
       header {
         display: flex;
-        gap: 16px;
         align-items: center;
         justify-content: space-between;
+        gap: 14px;
         flex-wrap: wrap;
+        position: sticky;
+        top: 0;
+        padding: 14px 0;
+        backdrop-filter: blur(12px);
+        background: linear-gradient(
+          180deg,
+          rgba(7, 11, 20, 0.82),
+          rgba(7, 11, 20, 0.25)
+        );
+        z-index: 20;
       }
+
       .brand {
-        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
         letter-spacing: 0.2px;
       }
+
+      .logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background:
+          radial-gradient(18px 18px at 30% 30%, rgba(255, 255, 255, 0.22),
+            transparent 55%),
+          linear-gradient(135deg, rgba(124, 92, 255, 0.9), rgba(34, 197, 94, 0.8));
+        box-shadow: 0 10px 30px rgba(124, 92, 255, 0.18);
+      }
+
+      nav {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .navlink {
+        padding: 8px 10px;
+        border: 1px solid rgba(255, 255, 255, 0);
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .navlink:hover {
+        border-color: rgba(255, 255, 255, 0.12);
+        color: var(--text);
+      }
+
       .pill {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         padding: 6px 10px;
         border: 1px solid rgba(255, 255, 255, 0.14);
         border-radius: 999px;
         color: var(--muted);
         font-size: 13px;
       }
-      .hero {
-        margin-top: 22px;
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent2);
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
+      }
+
+      main {
+        margin-top: 12px;
+      }
+
+      section[id] {
+        scroll-margin-top: 92px;
+      }
+
+      .grid2 {
         display: grid;
-        gap: 16px;
-        grid-template-columns: 1.5fr 0.9fr;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 14px;
+        margin-top: 16px;
       }
       @media (max-width: 900px) {
-        .hero {
+        .grid2 {
           grid-template-columns: 1fr;
         }
       }
+
       .card {
         background: var(--card);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
         padding: 18px;
+        box-shadow: var(--shadow);
       }
-      h1 {
-        margin: 10px 0 8px;
-        font-size: 36px;
-        line-height: 1.1;
+
+      .card.solid {
+        background: var(--card2);
       }
-      h2 {
-        margin: 26px 0 12px;
-        font-size: 22px;
+
+      .hero h1 {
+        margin: 10px 0 10px;
+        font-size: 40px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
       }
-      h3 {
-        margin: 0 0 8px;
-        font-size: 18px;
-      }
-      p {
+
+      .hero p {
         margin: 10px 0;
         color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
       }
+
+      .hero .sub {
+        color: var(--muted2);
+        font-size: 13px;
+      }
+
+      .badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .tag.strong {
+        color: var(--text);
+        border-color: rgba(124, 92, 255, 0.35);
+        background: rgba(124, 92, 255, 0.08);
+      }
+
       .btns {
         display: flex;
         gap: 10px;
         flex-wrap: wrap;
-        margin-top: 14px;
+        margin-top: 16px;
       }
+
       .btn {
-        display: inline-block;
-        padding: 10px 14px;
-        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 11px 14px;
+        border-radius: 14px;
         text-decoration: none;
         border: 1px solid rgba(255, 255, 255, 0.14);
-        background: transparent;
+        background: rgba(10, 16, 32, 0.55);
         color: var(--text);
         cursor: pointer;
+        touch-action: manipulation;
+        transition: transform 160ms ease, border-color 160ms ease,
+          background 160ms ease;
       }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.22);
+        background: rgba(10, 16, 32, 0.75);
+      }
+
       .btn.primary {
+        border: none;
         background: linear-gradient(90deg, var(--accent), #4f46e5);
-        border: none;
-        color: white;
       }
+
+      .btn.primary:hover {
+        background: linear-gradient(90deg, #8b75ff, #5a54ff);
+      }
+
       .btn.green {
-        background: linear-gradient(90deg, var(--accent2), #16a34a);
         border: none;
+        background: linear-gradient(90deg, var(--accent2), #16a34a);
         color: #04130a;
-        font-weight: 800;
+        font-weight: 900;
       }
-      .grid {
+
+      .btn.green:hover {
+        background: linear-gradient(90deg, #34d399, #22c55e);
+      }
+
+      .btn:focus-visible,
+      .navlink:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible {
+        outline: 3px solid rgba(124, 92, 255, 0.5);
+        outline-offset: 2px;
+      }
+
+      .kpi {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      @media (max-width: 900px) {
+        .kpi {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .kpi .mini {
+        padding: 14px;
+      }
+
+      .kpi b {
+        display: block;
+        font-size: 13px;
+      }
+
+      .kpi span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      h2 {
+        margin: 30px 0 12px;
+        font-size: 22px;
+        letter-spacing: -0.01em;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .grid3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 12px;
       }
+
       @media (max-width: 900px) {
-        .grid {
+        .grid3 {
           grid-template-columns: 1fr;
         }
       }
+
       ul {
         margin: 10px 0 0 18px;
         color: var(--muted);
       }
+
+      .price {
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
       .small {
         font-size: 13px;
-        color: var(--muted);
+        color: var(--muted2);
       }
-      .tag {
-        display: inline-block;
-        padding: 4px 10px;
+
+      .recommended {
+        border-color: rgba(34, 197, 94, 0.35);
+        background:
+          radial-gradient(600px 300px at 20% 0%, rgba(34, 197, 94, 0.14),
+            transparent 60%),
+          var(--card2);
+      }
+
+      .recBadge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
         border-radius: 999px;
+        background: rgba(34, 197, 94, 0.14);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        color: #bbf7d0;
         font-size: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        color: var(--muted);
-        margin-right: 6px;
+        margin-bottom: 10px;
       }
-      .tag.warn {
-        border-color: rgba(251, 191, 36, 0.35);
-        color: #fcd34d;
+
+      .hr {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.12);
+        margin: 20px 0;
       }
+
       label {
         display: block;
         margin: 10px 0 6px;
         font-size: 13px;
         color: var(--muted);
       }
+
       input,
       textarea,
       select {
         width: 100%;
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: #0a1020;
+        padding: 11px 12px;
+        border-radius: 14px;
+        background: rgba(10, 16, 32, 0.65);
         border: 1px solid rgba(255, 255, 255, 0.14);
         color: var(--text);
       }
+
       textarea {
-        min-height: 110px;
+        min-height: 120px;
+        resize: vertical;
       }
+
       .two {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
       }
+
       @media (max-width: 900px) {
         .two {
           grid-template-columns: 1fr;
         }
       }
+
       footer {
-        margin-top: 26px;
-      }
-      .hr {
-        height: 1px;
-        background: rgba(255, 255, 255, 0.12);
-        margin: 22px 0;
-      }
-      .lang {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-      @media (max-width: 900px) {
-        .lang {
-          grid-template-columns: 1fr;
-        }
-      }
-      .kpi {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-top: 10px;
-      }
-      @media (max-width: 900px) {
-        .kpi {
-          grid-template-columns: 1fr;
-        }
-      }
-      .kpi .card {
-        padding: 14px;
-      }
-      .kpi b {
-        color: var(--text);
+        margin-top: 30px;
       }
     </style>
   </head>
   <body>
+    <a class="skip" href="#main">Saltar al contenido</a>
+
     <div class="wrap">
       <header>
-        <div class="brand">◈ OpenClaw Setup Express</div>
-        <div class="pill">48h delivery • Fixed pricing • Pay in USDC/USDT</div>
+        <div class="brand" aria-label="OpenClaw Setup Express">
+          <div class="logo" aria-hidden="true"></div>
+          <div>OpenClaw Setup Express</div>
+        </div>
+
+        <nav aria-label="Navegación">
+          <a class="navlink" href="#paquetes">Paquetes</a>
+          <a class="navlink" href="#casos">Casos</a>
+          <a class="navlink" href="#pago">Pago</a>
+          <a class="navlink" href="#form">Empezar</a>
+          <span class="pill"><span class="dot" aria-hidden="true"></span>48h • Precio fijo • USDC/USDT</span>
+        </nav>
       </header>
 
-      <section class="hero">
-        <div class="card">
-          <div class="lang">
-            <div>
-              <span class="tag warn">Principal: Negocios</span>
-              <h1>ES: En 48h te montamos tu “Jarvis” operativo en Telegram.</h1>
+      <main id="main">
+        <section class="hero" aria-label="Hero">
+          <div class="grid2">
+            <div class="card solid">
+              <div class="badges">
+                <span class="tag strong">Principal: Negocios</span>
+                <span class="tag">Entrega: 48h</span>
+                <span class="tag">2 automatizaciones</span>
+                <span class="tag">Alertas + handoff</span>
+              </div>
+
+              <h1>En 48h te montamos tu bot operativo en Telegram.</h1>
               <p>
-                2 automatizaciones listas + alertas + handoff. Ideal para equipos
-                chicos que quieren menos caos y más trazabilidad.
+                Dos flujos automáticos (leads/ops/reporting), alertas cuando algo se traba
+                y un handoff claro para que no dependás de nosotros para lo básico.
               </p>
+              <p class="sub">
+                <span lang="en">EN:</span>
+                <span lang="en">In 48h, we ship your operational Telegram bot (2 automations + alerts + handoff).</span>
+              </p>
+
+              <div class="btns">
+                <a class="btn primary" href="#paquetes">Ver paquetes</a>
+                <a class="btn green" href="#form">Start / Request invoice</a>
+                <a class="btn" href="#casos">Ver casos</a>
+              </div>
+
+              <div class="kpi">
+                <div class="card mini">
+                  <b>Entrega</b>
+                  <span>48 horas (desde onboarding)</span>
+                </div>
+                <div class="card mini">
+                  <b>Incluye</b>
+                  <span>2 automatizaciones + alertas</span>
+                </div>
+                <div class="card mini">
+                  <b>Pago</b>
+                  <span>USDC/USDT (red acordada)</span>
+                </div>
+              </div>
+
               <p class="small">
-                También lo hacemos para particulares (productividad personal /
-                side-business).
+                Construido con OpenClaw (browser + APIs + orquestación). Sin spam, sin scraping shady, sin violar TOS.
               </p>
             </div>
-            <div>
-              <span class="tag">English</span>
-              <h1>EN: In 48h, we set up your operational Telegram bot.</h1>
-              <p>
-                2 automations + alerts + handoff. Built for founders and small
-                teams who want less busywork and more visibility.
+
+            <aside class="card recommended" aria-label="Recomendado">
+              <div class="recBadge">Recomendado para equipos / ops</div>
+              <h3>Express Business</h3>
+              <div class="price">US$1,500</div>
+              <p class="muted">Listo para negocio: menos caos, más trazabilidad.</p>
+              <ul>
+                <li>2 workflows de negocio (leads/ops/reporting)</li>
+                <li>2 integraciones (Sheets/Calendar/Gmail/CRM/Webhook)</li>
+                <li>Roles/targets (quién recibe qué)</li>
+                <li><strong>7 días de soporte</strong> post-entrega</li>
+              </ul>
+              <div class="hr"></div>
+              <p class="small">
+                Fit check rápido: decinos tu proceso + herramientas y te decimos si entra en 48h o requiere Sprint.
               </p>
-              <p class="small">Also available for individuals (personal productivity).</p>
-            </div>
+              <div class="btns">
+                <a class="btn green" href="#form">Empezar</a>
+                <a class="btn" href="#pago">Pagar en cripto</a>
+              </div>
+            </aside>
           </div>
+        </section>
 
-          <div class="btns">
-            <a class="btn primary" href="#packages">See 48h packages</a>
-            <a class="btn green" href="#onboarding">Start / Request invoice</a>
-            <a class="btn" href="#usecases">Use cases</a>
-          </div>
+        <section id="paquetes" aria-label="Paquetes">
+          <h2>Paquetes (48h)</h2>
+          <div class="grid3">
+            <div class="card recommended">
+              <div class="recBadge">Best value</div>
+              <h3>Express Business</h3>
+              <div class="price">US$1,500</div>
+              <ul>
+                <li>2 workflows de negocio</li>
+                <li>2 integraciones</li>
+                <li>Alertas + logs básicos</li>
+                <li>7 días soporte</li>
+              </ul>
+              <p class="small">Ideal para equipos chicos, ventas/ops/soporte.</p>
+            </div>
 
-          <div class="kpi">
             <div class="card">
-              <b>Delivery</b>
-              <div class="small">48 hours (from onboarding)</div>
+              <h3>Express Pro</h3>
+              <div class="price">US$999</div>
+              <ul>
+                <li>2 workflows</li>
+                <li>1 integración</li>
+                <li>Alertas + logs</li>
+              </ul>
+              <p class="small">Ideal para founders con 1–2 procesos repetibles.</p>
             </div>
+
             <div class="card">
-              <b>Included</b>
-              <div class="small">2 automations + alerts + runbook</div>
-            </div>
-            <div class="card">
-              <b>Payment</b>
-              <div class="small">USDC / USDT (network agreed)</div>
+              <h3>Express Personal</h3>
+              <div class="price">US$750</div>
+              <ul>
+                <li>Briefing diario (agenda + tareas + links)</li>
+                <li>Inbox-to-action (reenviás → tareas/recordatorios)</li>
+                <li>Handoff simple</li>
+              </ul>
+              <p class="small">Productividad personal / side-business.</p>
             </div>
           </div>
 
           <p class="small">
-            Built with OpenClaw (browser + APIs + orchestration). No spam, no
-            shady scraping, no TOS violations.
+            ¿Querés mantenimiento mensual? Se cotiza aparte (monitoreo + fixes + horas de mejoras). El setup te deja operando.
           </p>
-        </div>
+        </section>
 
-        <div class="card">
-          <h3>What you get (always)</h3>
-          <ul>
-            <li>Production go-live + runbook</li>
-            <li>Telegram/email alerts for failures</li>
-            <li>Basic logs + last-success visibility</li>
-            <li>Clear scope + out-of-scope</li>
-          </ul>
+        <section id="casos" aria-label="Casos de uso">
+          <h2>Casos de uso</h2>
+          <div class="grid3">
+            <div class="card">
+              <h3>Negocios: Leads → follow-up → reporte</h3>
+              <ul>
+                <li>Captura leads (form/Sheets/Telegram)</li>
+                <li>Follow-ups automáticos + recordatorios</li>
+                <li>Resumen semanal al dueño</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Negocios: Ops/soporte → routing → alertas</h3>
+              <ul>
+                <li>Intake por Telegram</li>
+                <li>Asignación a responsable</li>
+                <li>Resumen diario + alertas si se traba</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Particulares: Briefing + inbox-to-action</h3>
+              <ul>
+                <li>Agenda + tareas + links</li>
+                <li>Reenviás stuff → tareas/recordatorios</li>
+                <li>Menos ruido mental</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="pago" aria-label="Pago en cripto">
+          <h2>Pagar en cripto (USDC/USDT)</h2>
+          <div class="card">
+            <p><strong>ES:</strong> Aceptamos USDC/USDT. Pedí invoice por el formulario y te enviamos address + red + memo (si aplica).</p>
+            <p><strong>EN:</strong> <span lang="en">We accept USDC/USDT. Request an invoice in the form and we’ll send address + network + memo (if needed).</span></p>
+
+            <div class="two">
+              <div>
+                <label for="usdc">USDC address (placeholder)</label>
+                <input id="usdc" name="usdc" value="USDC_ADDRESS_HERE" readonly />
+              </div>
+              <div>
+                <label for="usdt">USDT address (placeholder)</label>
+                <input id="usdt" name="usdt" value="USDT_ADDRESS_HERE" readonly />
+              </div>
+            </div>
+
+            <p class="small">Redes soportadas: a acordar (Ethereum / Arbitrum / Tron). Confirmá red antes de enviar.</p>
+          </div>
+        </section>
+
+        <section id="form" aria-label="Formulario">
+          <h2>Empezar (invoice / onboarding)</h2>
+          <div class="card">
+            <p class="small">
+              Form estático (template). Conectalo a Formspree/Make/Zapier o reemplazá el <code>action</code> por tu endpoint.
+            </p>
+
+            <form method="post" action="https://formspree.io/f/YOUR_FORM_ID">
+              <div class="two">
+                <div>
+                  <label for="name">Nombre</label>
+                  <input id="name" name="name" autocomplete="name" placeholder="Tu nombre…" required />
+                </div>
+                <div>
+                  <label for="company">Empresa (opcional)</label>
+                  <input id="company" name="company" autocomplete="organization" placeholder="Nombre de empresa…" />
+                </div>
+              </div>
+
+              <div class="two">
+                <div>
+                  <label for="telegram">Telegram</label>
+                  <input id="telegram" name="telegram" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@handle…" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="vos@empresa.com…" required />
+                </div>
+              </div>
+
+              <label for="problem">¿Qué querés automatizar/monitorear?</label>
+              <textarea id="problem" name="problem" placeholder="Contá el proceso + herramientas (Sheets/Notion/HubSpot/etc.)…" required></textarea>
+
+              <div class="two">
+                <div>
+                  <label for="urgency">Urgencia</label>
+                  <select id="urgency" name="urgency" autocomplete="off">
+                    <option>Esta semana</option>
+                    <option>Este mes</option>
+                    <option>No urgente</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="budget">Presupuesto</label>
+                  <select id="budget" name="budget" autocomplete="off">
+                    <option>$750–$1,500 (Express 48h)</option>
+                    <option>$1.5k–$3k</option>
+                    <option>$3k+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="two">
+                <div>
+                  <label for="package">Paquete</label>
+                  <select id="package" name="package" autocomplete="off">
+                    <option>Express Business — $1,500</option>
+                    <option>Express Pro — $999</option>
+                    <option>Express Personal — $750</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="network">Red preferida</label>
+                  <input id="network" name="network" autocomplete="off" placeholder="Arbitrum / Tron / Ethereum…" />
+                </div>
+              </div>
+
+              <div class="two">
+                <div>
+                  <label for="payment">Pago</label>
+                  <select id="payment" name="payment" autocomplete="off">
+                    <option>USDC</option>
+                    <option>USDT</option>
+                    <option>Invoice (fiat) + crypto settlement</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="timezone">Zona horaria</label>
+                  <input id="timezone" name="timezone" autocomplete="off" placeholder="GMT-6 / Canary…" />
+                </div>
+              </div>
+
+              <div class="btns">
+                <button class="btn primary" type="submit">Enviar</button>
+                <a class="btn" href="#paquetes">Volver a paquetes</a>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <footer>
           <div class="hr"></div>
-          <h3>Fast fit check</h3>
-          <p class="small">
-            Tell us the process + tools and we’ll reply with the best package +
-            next steps.
-          </p>
-        </div>
-      </section>
-
-      <section id="packages">
-        <h2>48h Packages / Paquetes</h2>
-        <div class="grid">
-          <div class="card">
-            <h3>Express Business</h3>
-            <p><strong>US$1,500</strong> — best for teams & ops.</p>
-            <ul>
-              <li>2 business workflows (leads/ops/reporting)</li>
-              <li>2 integrations (Sheets/Calendar/Gmail/CRM/Webhook)</li>
-              <li>Roles/targets (who gets what)</li>
-              <li><strong>7 days support</strong> after delivery</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Express Pro</h3>
-            <p><strong>US$999</strong> — best for founders.</p>
-            <ul>
-              <li>2 workflows</li>
-              <li>1 integration</li>
-              <li>Alerts + basic logs</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Express Personal</h3>
-            <p><strong>US$750</strong> — for personal productivity.</p>
-            <ul>
-              <li>Daily briefing (agenda + tasks + links)</li>
-              <li>Inbox-to-action (forward links/messages → tasks/reminders)</li>
-              <li>Simple handoff</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="usecases">
-        <h2>Use cases / Casos</h2>
-        <div class="grid">
-          <div class="card">
-            <h3>Business: Leads → follow-up → report</h3>
-            <ul>
-              <li>Capture leads (form/Sheets/Telegram)</li>
-              <li>Automated follow-ups + reminders</li>
-              <li>Weekly summary to owner</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Business: Ops/support intake → routing → alerts</h3>
-            <ul>
-              <li>Telegram intake</li>
-              <li>Assign to responsible</li>
-              <li>Daily summary + stuck alerts</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Personal: Daily briefing + inbox-to-action</h3>
-            <ul>
-              <li>Agenda + tasks + important links</li>
-              <li>Forward stuff → tasks/reminders</li>
-              <li>Keep your brain clean</li>
-            </ul>
-          </div>
-        </div>
-        <p class="small">
-          Want something bigger than 48h? We also offer longer Automation Sprints,
-          Data Radar (scraping/ETL), and Watchtower monitoring.
-        </p>
-      </section>
-
-      <section id="pay">
-        <h2>Pay in crypto (USDC/USDT)</h2>
-        <div class="card">
-          <p>
-            <strong>ES:</strong> Aceptamos USDC/USDT. Pedí invoice por el
-            formulario y te enviamos address + red + memo (si aplica).
-          </p>
-          <p>
-            <strong>EN:</strong> We accept USDC/USDT. Request an invoice in the
-            form and we’ll send address + network + memo (if needed).
-          </p>
-          <div class="two">
-            <div>
-              <label>USDC address (placeholder)</label>
-              <input value="USDC_ADDRESS_HERE" readonly />
-            </div>
-            <div>
-              <label>USDT address (placeholder)</label>
-              <input value="USDT_ADDRESS_HERE" readonly />
-            </div>
-          </div>
-          <p class="small">
-            Networks supported: to be agreed (e.g., Ethereum / Arbitrum / Tron).
-            Always confirm the network before sending.
-          </p>
-        </div>
-      </section>
-
-      <section id="onboarding">
-        <h2>Onboarding form / Formulario</h2>
-        <div class="card">
-          <p class="small">
-            Static form template. Connect it to Formspree/Make/Zapier or replace
-            the action with your own endpoint.
-          </p>
-
-          <form method="post" action="https://formspree.io/f/YOUR_FORM_ID">
-            <div class="two">
-              <div>
-                <label>Name / Nombre</label>
-                <input name="name" placeholder="Your name" required />
-              </div>
-              <div>
-                <label>Company / Empresa</label>
-                <input name="company" placeholder="Company" />
-              </div>
-            </div>
-
-            <div class="two">
-              <div>
-                <label>Telegram</label>
-                <input name="telegram" placeholder="@handle" />
-              </div>
-              <div>
-                <label>Email</label>
-                <input name="email" placeholder="you@company.com" required />
-              </div>
-            </div>
-
-            <label
-              >What do you want to automate/monitor? / ¿Qué querés
-              automatizar/monitorear?</label
-            >
-            <textarea
-              name="problem"
-              placeholder="Describe the process + tools (Notion/Sheets/HubSpot/etc.)."
-              required
-            ></textarea>
-
-            <div class="two">
-              <div>
-                <label>Urgency / Urgencia</label>
-                <select name="urgency">
-                  <option>This week / Esta semana</option>
-                  <option>This month / Este mes</option>
-                  <option>Not urgent / No urgente</option>
-                </select>
-              </div>
-              <div>
-                <label>Budget / Presupuesto</label>
-                <select name="budget">
-                  <option>$750–$1,500 (Express 48h)</option>
-                  <option>$1.5k–$3k</option>
-                  <option>$3k+</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="two">
-              <div>
-                <label>Preferred package / Paquete</label>
-                <select name="package">
-                  <option>Express Business — $1,500</option>
-                  <option>Express Pro — $999</option>
-                  <option>Express Personal — $750</option>
-                </select>
-              </div>
-              <div>
-                <label>Preferred network / Red preferida</label>
-                <input name="network" placeholder="Arbitrum / Tron / Ethereum" />
-              </div>
-            </div>
-
-            <div class="two">
-              <div>
-                <label>Payment / Pago</label>
-                <select name="payment">
-                  <option>USDC</option>
-                  <option>USDT</option>
-                  <option>Invoice (fiat) + crypto settlement</option>
-                </select>
-              </div>
-              <div>
-                <label>Timezone / Zona horaria</label>
-                <input name="timezone" placeholder="e.g. GMT-6 / Canary" />
-              </div>
-            </div>
-
-            <div class="btns">
-              <button class="btn primary" type="submit">Send / Enviar</button>
-              <a class="btn" href="#packages">Back to packages</a>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <footer>
-        <div class="hr"></div>
-        <p class="small">
-          © OpenClaw Setup Express — Draft landing. Replace placeholders (Form ID,
-          wallets) before publishing.
-        </p>
-      </footer>
+          <p class="small">© OpenClaw Setup Express — draft landing. Reemplazá placeholders (Form ID, wallets) antes de publicar.</p>
+        </footer>
+      </main>
     </div>
   </body>
 </html>
