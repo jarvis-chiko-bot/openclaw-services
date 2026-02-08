@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="es">
+<html lang="en" data-lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#070b14" />
 
-    <title>OpenClaw Setup Express (48h) — Tu bot operativo en Telegram</title>
+    <title>OpenClaw Setup Express (48h) — Your operational Telegram bot</title>
     <meta
       name="description"
-      content="En 48 horas te montamos tu bot operativo en Telegram (OpenClaw) con 2 automatizaciones, alertas y handoff. Precio fijo. Pagos en USDC/USDT."
+      content="In 48 hours, we set up your operational Telegram bot (OpenClaw) with 2 automations, alerts, and handoff. Fixed price. Pay in USDC/USDT."
     />
 
     <style>
@@ -24,18 +24,17 @@
         --muted2: rgba(234, 240, 255, 0.55);
         --accent: #7c5cff;
         --accent2: #22c55e;
-        --danger: #fb7185;
         --shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
         --radius: 18px;
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
-      html {
-        scroll-behavior: smooth;
-      }
+      html { scroll-behavior: smooth; }
+
+      /* i18n */
+      html[data-lang="en"] .es { display: none !important; }
+      html[data-lang="es"] .en { display: none !important; }
 
       body {
         margin: 0;
@@ -43,18 +42,13 @@
           Helvetica, Arial;
         color: var(--text);
         background:
-          radial-gradient(1000px 520px at 10% 0%, rgba(124, 92, 255, 0.22),
-            transparent 60%),
-          radial-gradient(900px 520px at 100% 10%, rgba(34, 197, 94, 0.14),
-            transparent 55%),
-          radial-gradient(700px 420px at 50% 110%, rgba(251, 113, 133, 0.11),
-            transparent 55%),
+          radial-gradient(1000px 520px at 10% 0%, rgba(124, 92, 255, 0.22), transparent 60%),
+          radial-gradient(900px 520px at 100% 10%, rgba(34, 197, 94, 0.14), transparent 55%),
+          radial-gradient(700px 420px at 50% 110%, rgba(251, 113, 133, 0.11), transparent 55%),
           linear-gradient(180deg, var(--bg0), var(--bg1));
       }
 
-      a {
-        color: inherit;
-      }
+      a { color: inherit; }
 
       .wrap {
         max-width: 1040px;
@@ -74,9 +68,7 @@
         text-decoration: none;
         z-index: 999;
       }
-      .skip:focus {
-        left: 14px;
-      }
+      .skip:focus { left: 14px; }
 
       header {
         display: flex;
@@ -88,11 +80,7 @@
         top: 0;
         padding: 14px 0;
         backdrop-filter: blur(12px);
-        background: linear-gradient(
-          180deg,
-          rgba(7, 11, 20, 0.82),
-          rgba(7, 11, 20, 0.25)
-        );
+        background: linear-gradient(180deg, rgba(7, 11, 20, 0.82), rgba(7, 11, 20, 0.25));
         z-index: 20;
       }
 
@@ -110,8 +98,7 @@
         border-radius: 12px;
         border: 1px solid var(--border);
         background:
-          radial-gradient(18px 18px at 30% 30%, rgba(255, 255, 255, 0.22),
-            transparent 55%),
+          radial-gradient(18px 18px at 30% 30%, rgba(255, 255, 255, 0.22), transparent 55%),
           linear-gradient(135deg, rgba(124, 92, 255, 0.9), rgba(34, 197, 94, 0.8));
         box-shadow: 0 10px 30px rgba(124, 92, 255, 0.18);
       }
@@ -131,10 +118,7 @@
         color: var(--muted);
         font-size: 13px;
       }
-      .navlink:hover {
-        border-color: rgba(255, 255, 255, 0.12);
-        color: var(--text);
-      }
+      .navlink:hover { border-color: rgba(255, 255, 255, 0.12); color: var(--text); }
 
       .pill {
         display: inline-flex;
@@ -155,13 +139,41 @@
         box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
       }
 
-      main {
-        margin-top: 12px;
+      .langSwitch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(10, 16, 32, 0.5);
       }
 
-      section[id] {
-        scroll-margin-top: 92px;
+      .langBtn {
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0);
+        background: transparent;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
       }
+
+      .langBtn:hover { transform: translateY(-1px); color: var(--text); }
+
+      .langBtn[aria-pressed="true"] {
+        background: rgba(124, 92, 255, 0.16);
+        border-color: rgba(124, 92, 255, 0.35);
+        color: var(--text);
+      }
+
+      main { margin-top: 12px; }
+
+      section[id] { scroll-margin-top: 92px; }
 
       .grid2 {
         display: grid;
@@ -169,11 +181,7 @@
         gap: 14px;
         margin-top: 16px;
       }
-      @media (max-width: 900px) {
-        .grid2 {
-          grid-template-columns: 1fr;
-        }
-      }
+      @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
 
       .card {
         background: var(--card);
@@ -183,9 +191,7 @@
         box-shadow: var(--shadow);
       }
 
-      .card.solid {
-        background: var(--card2);
-      }
+      .card.solid { background: var(--card2); }
 
       .hero h1 {
         margin: 10px 0 10px;
@@ -202,10 +208,7 @@
         line-height: 1.55;
       }
 
-      .hero .sub {
-        color: var(--muted2);
-        font-size: 13px;
-      }
+      .hero .sub { color: var(--muted2); font-size: 13px; }
 
       .badges {
         display: flex;
@@ -250,8 +253,7 @@
         color: var(--text);
         cursor: pointer;
         touch-action: manipulation;
-        transition: transform 160ms ease, border-color 160ms ease,
-          background 160ms ease;
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
       }
 
       .btn:hover {
@@ -264,10 +266,7 @@
         border: none;
         background: linear-gradient(90deg, var(--accent), #4f46e5);
       }
-
-      .btn.primary:hover {
-        background: linear-gradient(90deg, #8b75ff, #5a54ff);
-      }
+      .btn.primary:hover { background: linear-gradient(90deg, #8b75ff, #5a54ff); }
 
       .btn.green {
         border: none;
@@ -275,13 +274,11 @@
         color: #04130a;
         font-weight: 900;
       }
-
-      .btn.green:hover {
-        background: linear-gradient(90deg, #34d399, #22c55e);
-      }
+      .btn.green:hover { background: linear-gradient(90deg, #34d399, #22c55e); }
 
       .btn:focus-visible,
       .navlink:focus-visible,
+      .langBtn:focus-visible,
       input:focus-visible,
       textarea:focus-visible,
       select:focus-visible {
@@ -295,77 +292,36 @@
         gap: 10px;
         margin-top: 14px;
       }
+      @media (max-width: 900px) { .kpi { grid-template-columns: 1fr; } }
 
-      @media (max-width: 900px) {
-        .kpi {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .kpi .mini {
-        padding: 14px;
-      }
-
-      .kpi b {
-        display: block;
-        font-size: 13px;
-      }
-
-      .kpi span {
-        display: block;
-        margin-top: 6px;
-        color: var(--muted);
-        font-size: 13px;
-      }
+      .kpi .mini { padding: 14px; }
+      .kpi b { display: block; font-size: 13px; }
+      .kpi span { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; }
 
       h2 {
         margin: 30px 0 12px;
         font-size: 22px;
         letter-spacing: -0.01em;
       }
-
-      h3 {
-        margin: 0 0 8px;
-        font-size: 18px;
-      }
+      h3 { margin: 0 0 8px; font-size: 18px; }
 
       .grid3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 12px;
       }
+      @media (max-width: 900px) { .grid3 { grid-template-columns: 1fr; } }
 
-      @media (max-width: 900px) {
-        .grid3 {
-          grid-template-columns: 1fr;
-        }
-      }
+      ul { margin: 10px 0 0 18px; color: var(--muted); }
 
-      ul {
-        margin: 10px 0 0 18px;
-        color: var(--muted);
-      }
-
-      .price {
-        font-size: 24px;
-        font-weight: 900;
-        letter-spacing: -0.02em;
-      }
-
-      .muted {
-        color: var(--muted);
-      }
-
-      .small {
-        font-size: 13px;
-        color: var(--muted2);
-      }
+      .price { font-size: 24px; font-weight: 900; letter-spacing: -0.02em; }
+      .muted { color: var(--muted); }
+      .small { font-size: 13px; color: var(--muted2); }
 
       .recommended {
         border-color: rgba(34, 197, 94, 0.35);
         background:
-          radial-gradient(600px 300px at 20% 0%, rgba(34, 197, 94, 0.14),
-            transparent 60%),
+          radial-gradient(600px 300px at 20% 0%, rgba(34, 197, 94, 0.14), transparent 60%),
           var(--card2);
       }
 
@@ -382,18 +338,9 @@
         margin-bottom: 10px;
       }
 
-      .hr {
-        height: 1px;
-        background: rgba(255, 255, 255, 0.12);
-        margin: 20px 0;
-      }
+      .hr { height: 1px; background: rgba(255, 255, 255, 0.12); margin: 20px 0; }
 
-      label {
-        display: block;
-        margin: 10px 0 6px;
-        font-size: 13px;
-        color: var(--muted);
-      }
+      label { display: block; margin: 10px 0 6px; font-size: 13px; color: var(--muted); }
 
       input,
       textarea,
@@ -406,30 +353,24 @@
         color: var(--text);
       }
 
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
+      textarea { min-height: 120px; resize: vertical; }
 
       .two {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
       }
+      @media (max-width: 900px) { .two { grid-template-columns: 1fr; } }
 
-      @media (max-width: 900px) {
-        .two {
-          grid-template-columns: 1fr;
-        }
-      }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
 
-      footer {
-        margin-top: 30px;
-      }
+      footer { margin-top: 30px; }
     </style>
   </head>
   <body>
-    <a class="skip" href="#main">Saltar al contenido</a>
+    <a class="skip" href="#main">
+      <span class="en">Skip to content</span><span class="es">Saltar al contenido</span>
+    </a>
 
     <div class="wrap">
       <header>
@@ -438,12 +379,21 @@
           <div>OpenClaw Setup Express</div>
         </div>
 
-        <nav aria-label="Navegación">
-          <a class="navlink" href="#paquetes">Paquetes</a>
-          <a class="navlink" href="#casos">Casos</a>
-          <a class="navlink" href="#pago">Pago</a>
-          <a class="navlink" href="#form">Empezar</a>
-          <span class="pill"><span class="dot" aria-hidden="true"></span>48h • Precio fijo • USDC/USDT</span>
+        <nav aria-label="Navigation">
+          <a class="navlink" href="#packages"><span class="en">Packages</span><span class="es">Paquetes</span></a>
+          <a class="navlink" href="#usecases"><span class="en">Use cases</span><span class="es">Casos</span></a>
+          <a class="navlink" href="#pay"><span class="en">Payment</span><span class="es">Pago</span></a>
+          <a class="navlink" href="#start"><span class="en">Start</span><span class="es">Empezar</span></a>
+
+          <div class="langSwitch" role="group" aria-label="Language switch">
+            <button class="langBtn" type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button class="langBtn" type="button" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+
+          <span class="pill"><span class="dot" aria-hidden="true"></span>
+            <span class="en">48h • Fixed price • USDC/USDT</span>
+            <span class="es">48h • Precio fijo • USDC/USDT</span>
+          </span>
         </nav>
       </header>
 
@@ -452,150 +402,161 @@
           <div class="grid2">
             <div class="card solid">
               <div class="badges">
-                <span class="tag strong">Principal: Negocios</span>
-                <span class="tag">Entrega: 48h</span>
-                <span class="tag">2 automatizaciones</span>
-                <span class="tag">Alertas + handoff</span>
+                <span class="tag strong"><span class="en">Primary: Business</span><span class="es">Principal: Negocios</span></span>
+                <span class="tag"><span class="en">Delivery: 48h</span><span class="es">Entrega: 48h</span></span>
+                <span class="tag"><span class="en">2 automations</span><span class="es">2 automatizaciones</span></span>
+                <span class="tag"><span class="en">Alerts + handoff</span><span class="es">Alertas + handoff</span></span>
               </div>
 
-              <h1>En 48h te montamos tu bot operativo en Telegram.</h1>
+              <h1>
+                <span class="en">In 48h, we ship your operational Telegram bot.</span>
+                <span class="es">En 48h te montamos tu bot operativo en Telegram.</span>
+              </h1>
               <p>
-                Dos flujos automáticos (leads/ops/reporting), alertas cuando algo se traba
-                y un handoff claro para que no dependás de nosotros para lo básico.
+                <span class="en">Two automated flows (leads/ops/reporting), alerts when something gets stuck, and a clear handoff so you don’t depend on us for the basics.</span>
+                <span class="es">Dos flujos automáticos (leads/ops/reporting), alertas cuando algo se traba y un handoff claro para que no dependás de nosotros para lo básico.</span>
               </p>
               <p class="sub">
-                <span lang="en">EN:</span>
-                <span lang="en">In 48h, we ship your operational Telegram bot (2 automations + alerts + handoff).</span>
+                <span class="en">Also available for individuals (personal productivity).</span>
+                <span class="es">También disponible para particulares (productividad personal).</span>
               </p>
 
               <div class="btns">
-                <a class="btn primary" href="#paquetes">Ver paquetes</a>
-                <a class="btn green" href="#form">Start / Request invoice</a>
-                <a class="btn" href="#casos">Ver casos</a>
+                <a class="btn primary" href="#packages"><span class="en">See packages</span><span class="es">Ver paquetes</span></a>
+                <a class="btn green" href="#start"><span class="en">Start / Request invoice</span><span class="es">Empezar / Pedir invoice</span></a>
+                <a class="btn" href="#usecases"><span class="en">Use cases</span><span class="es">Casos</span></a>
               </div>
 
               <div class="kpi">
                 <div class="card mini">
-                  <b>Entrega</b>
-                  <span>48 horas (desde onboarding)</span>
+                  <b><span class="en">Delivery</span><span class="es">Entrega</span></b>
+                  <span><span class="en">48 hours (from onboarding)</span><span class="es">48 horas (desde onboarding)</span></span>
                 </div>
                 <div class="card mini">
-                  <b>Incluye</b>
-                  <span>2 automatizaciones + alertas</span>
+                  <b><span class="en">Included</span><span class="es">Incluye</span></b>
+                  <span><span class="en">2 automations + alerts</span><span class="es">2 automatizaciones + alertas</span></span>
                 </div>
                 <div class="card mini">
-                  <b>Pago</b>
-                  <span>USDC/USDT (red acordada)</span>
+                  <b><span class="en">Payment</span><span class="es">Pago</span></b>
+                  <span><span class="en">USDC/USDT (network agreed)</span><span class="es">USDC/USDT (red acordada)</span></span>
                 </div>
               </div>
 
               <p class="small">
-                Construido con OpenClaw (browser + APIs + orquestación). Sin spam, sin scraping shady, sin violar TOS.
+                <span class="en">Built with OpenClaw (browser + APIs + orchestration). No spam, no shady scraping, no TOS violations.</span>
+                <span class="es">Construido con OpenClaw (browser + APIs + orquestación). Sin spam, sin scraping shady, sin violar TOS.</span>
               </p>
             </div>
 
-            <aside class="card recommended" aria-label="Recomendado">
-              <div class="recBadge">Recomendado para equipos / ops</div>
+            <aside class="card recommended" aria-label="Recommended">
+              <div class="recBadge"><span class="en">Recommended for teams / ops</span><span class="es">Recomendado para equipos / ops</span></div>
               <h3>Express Business</h3>
               <div class="price">US$1,500</div>
-              <p class="muted">Listo para negocio: menos caos, más trazabilidad.</p>
+              <p class="muted">
+                <span class="en">Ready for business: less chaos, more visibility.</span>
+                <span class="es">Listo para negocio: menos caos, más trazabilidad.</span>
+              </p>
               <ul>
-                <li>2 workflows de negocio (leads/ops/reporting)</li>
-                <li>2 integraciones (Sheets/Calendar/Gmail/CRM/Webhook)</li>
-                <li>Roles/targets (quién recibe qué)</li>
-                <li><strong>7 días de soporte</strong> post-entrega</li>
+                <li><span class="en">2 business workflows (leads/ops/reporting)</span><span class="es">2 workflows de negocio (leads/ops/reporting)</span></li>
+                <li><span class="en">2 integrations (Sheets/Calendar/Gmail/CRM/Webhook)</span><span class="es">2 integraciones (Sheets/Calendar/Gmail/CRM/Webhook)</span></li>
+                <li><span class="en">Roles/targets (who gets what)</span><span class="es">Roles/targets (quién recibe qué)</span></li>
+                <li><span class="en"><strong>7 days support</strong> after delivery</span><span class="es"><strong>7 días de soporte</strong> post-entrega</span></li>
               </ul>
               <div class="hr"></div>
               <p class="small">
-                Fit check rápido: decinos tu proceso + herramientas y te decimos si entra en 48h o requiere Sprint.
+                <span class="en">Fast fit check: tell us the process + tools and we’ll confirm if it fits in 48h or needs a Sprint.</span>
+                <span class="es">Fit check rápido: decinos tu proceso + herramientas y te decimos si entra en 48h o requiere Sprint.</span>
               </p>
               <div class="btns">
-                <a class="btn green" href="#form">Empezar</a>
-                <a class="btn" href="#pago">Pagar en cripto</a>
+                <a class="btn green" href="#start"><span class="en">Start</span><span class="es">Empezar</span></a>
+                <a class="btn" href="#pay"><span class="en">Pay in crypto</span><span class="es">Pagar en cripto</span></a>
               </div>
             </aside>
           </div>
         </section>
 
-        <section id="paquetes" aria-label="Paquetes">
-          <h2>Paquetes (48h)</h2>
+        <section id="packages" aria-label="Packages">
+          <h2><span class="en">48h Packages</span><span class="es">Paquetes (48h)</span></h2>
           <div class="grid3">
             <div class="card recommended">
-              <div class="recBadge">Best value</div>
+              <div class="recBadge"><span class="en">Best value</span><span class="es">Mejor opción</span></div>
               <h3>Express Business</h3>
               <div class="price">US$1,500</div>
               <ul>
-                <li>2 workflows de negocio</li>
-                <li>2 integraciones</li>
-                <li>Alertas + logs básicos</li>
-                <li>7 días soporte</li>
+                <li><span class="en">2 business workflows</span><span class="es">2 workflows de negocio</span></li>
+                <li><span class="en">2 integrations</span><span class="es">2 integraciones</span></li>
+                <li><span class="en">Alerts + basic logs</span><span class="es">Alertas + logs básicos</span></li>
+                <li><span class="en">7 days support</span><span class="es">7 días soporte</span></li>
               </ul>
-              <p class="small">Ideal para equipos chicos, ventas/ops/soporte.</p>
+              <p class="small"><span class="en">Ideal for small teams, sales/ops/support.</span><span class="es">Ideal para equipos chicos, ventas/ops/soporte.</span></p>
             </div>
 
             <div class="card">
               <h3>Express Pro</h3>
               <div class="price">US$999</div>
               <ul>
-                <li>2 workflows</li>
-                <li>1 integración</li>
-                <li>Alertas + logs</li>
+                <li><span class="en">2 workflows</span><span class="es">2 workflows</span></li>
+                <li><span class="en">1 integration</span><span class="es">1 integración</span></li>
+                <li><span class="en">Alerts + logs</span><span class="es">Alertas + logs</span></li>
               </ul>
-              <p class="small">Ideal para founders con 1–2 procesos repetibles.</p>
+              <p class="small"><span class="en">Best for founders with 1–2 repeatable processes.</span><span class="es">Ideal para founders con 1–2 procesos repetibles.</span></p>
             </div>
 
             <div class="card">
               <h3>Express Personal</h3>
               <div class="price">US$750</div>
               <ul>
-                <li>Briefing diario (agenda + tareas + links)</li>
-                <li>Inbox-to-action (reenviás → tareas/recordatorios)</li>
-                <li>Handoff simple</li>
+                <li><span class="en">Daily briefing (agenda + tasks + links)</span><span class="es">Briefing diario (agenda + tareas + links)</span></li>
+                <li><span class="en">Inbox-to-action (forward → tasks/reminders)</span><span class="es">Inbox-to-action (reenviás → tareas/recordatorios)</span></li>
+                <li><span class="en">Simple handoff</span><span class="es">Handoff simple</span></li>
               </ul>
-              <p class="small">Productividad personal / side-business.</p>
+              <p class="small"><span class="en">Personal productivity / side-business.</span><span class="es">Productividad personal / side-business.</span></p>
             </div>
           </div>
 
           <p class="small">
-            ¿Querés mantenimiento mensual? Se cotiza aparte (monitoreo + fixes + horas de mejoras). El setup te deja operando.
+            <span class="en">Want monthly maintenance? Quoted separately (monitoring + fixes + improvement hours). Setup is one-time and ships working.</span>
+            <span class="es">¿Querés mantenimiento mensual? Se cotiza aparte (monitoreo + fixes + horas de mejoras). El setup es one-time y te deja operando.</span>
           </p>
         </section>
 
-        <section id="casos" aria-label="Casos de uso">
-          <h2>Casos de uso</h2>
+        <section id="usecases" aria-label="Use cases">
+          <h2><span class="en">Use cases</span><span class="es">Casos de uso</span></h2>
           <div class="grid3">
             <div class="card">
-              <h3>Negocios: Leads → follow-up → reporte</h3>
+              <h3><span class="en">Business: Leads → follow-up → report</span><span class="es">Negocios: Leads → follow-up → reporte</span></h3>
               <ul>
-                <li>Captura leads (form/Sheets/Telegram)</li>
-                <li>Follow-ups automáticos + recordatorios</li>
-                <li>Resumen semanal al dueño</li>
+                <li><span class="en">Capture leads (form/Sheets/Telegram)</span><span class="es">Captura leads (form/Sheets/Telegram)</span></li>
+                <li><span class="en">Automated follow-ups + reminders</span><span class="es">Follow-ups automáticos + recordatorios</span></li>
+                <li><span class="en">Weekly summary to owner</span><span class="es">Resumen semanal al dueño</span></li>
               </ul>
             </div>
             <div class="card">
-              <h3>Negocios: Ops/soporte → routing → alertas</h3>
+              <h3><span class="en">Business: Ops/support intake → routing → alerts</span><span class="es">Negocios: Ops/soporte → routing → alertas</span></h3>
               <ul>
-                <li>Intake por Telegram</li>
-                <li>Asignación a responsable</li>
-                <li>Resumen diario + alertas si se traba</li>
+                <li><span class="en">Telegram intake</span><span class="es">Intake por Telegram</span></li>
+                <li><span class="en">Assign to responsible</span><span class="es">Asignación a responsable</span></li>
+                <li><span class="en">Daily summary + stuck alerts</span><span class="es">Resumen diario + alertas si se traba</span></li>
               </ul>
             </div>
             <div class="card">
-              <h3>Particulares: Briefing + inbox-to-action</h3>
+              <h3><span class="en">Individuals: Briefing + inbox-to-action</span><span class="es">Particulares: Briefing + inbox-to-action</span></h3>
               <ul>
-                <li>Agenda + tareas + links</li>
-                <li>Reenviás stuff → tareas/recordatorios</li>
-                <li>Menos ruido mental</li>
+                <li><span class="en">Agenda + tasks + important links</span><span class="es">Agenda + tareas + links</span></li>
+                <li><span class="en">Forward stuff → tasks/reminders</span><span class="es">Reenviás stuff → tareas/recordatorios</span></li>
+                <li><span class="en">Less mental noise</span><span class="es">Menos ruido mental</span></li>
               </ul>
             </div>
           </div>
         </section>
 
-        <section id="pago" aria-label="Pago en cripto">
-          <h2>Pagar en cripto (USDC/USDT)</h2>
+        <section id="pay" aria-label="Crypto payment">
+          <h2><span class="en">Pay in crypto (USDC/USDT)</span><span class="es">Pagar en cripto (USDC/USDT)</span></h2>
           <div class="card">
-            <p><strong>ES:</strong> Aceptamos USDC/USDT. Pedí invoice por el formulario y te enviamos address + red + memo (si aplica).</p>
-            <p><strong>EN:</strong> <span lang="en">We accept USDC/USDT. Request an invoice in the form and we’ll send address + network + memo (if needed).</span></p>
+            <p>
+              <span class="en"><strong>EN:</strong> We accept USDC/USDT. Request an invoice in the form and we’ll send address + network + memo (if needed).</span>
+              <span class="es"><strong>ES:</strong> Aceptamos USDC/USDT. Pedí invoice por el formulario y te enviamos address + red + memo (si aplica).</span>
+            </p>
 
             <div class="two">
               <div>
@@ -608,95 +569,155 @@
               </div>
             </div>
 
-            <p class="small">Redes soportadas: a acordar (Ethereum / Arbitrum / Tron). Confirmá red antes de enviar.</p>
+            <p class="small">
+              <span class="en">Networks supported: to be agreed (Ethereum / Arbitrum / Tron). Always confirm the network before sending.</span>
+              <span class="es">Redes soportadas: a acordar (Ethereum / Arbitrum / Tron). Confirmá red antes de enviar.</span>
+            </p>
           </div>
         </section>
 
-        <section id="form" aria-label="Formulario">
-          <h2>Empezar (invoice / onboarding)</h2>
+        <section id="start" aria-label="Start">
+          <h2><span class="en">Start (invoice / onboarding)</span><span class="es">Empezar (invoice / onboarding)</span></h2>
           <div class="card">
             <p class="small">
-              Form estático (template). Conectalo a Formspree/Make/Zapier o reemplazá el <code>action</code> por tu endpoint.
+              <span class="en">Static form template. Connect it to Formspree/Make/Zapier or replace the action with your endpoint.</span>
+              <span class="es">Form estático (template). Conectalo a Formspree/Make/Zapier o reemplazá el action por tu endpoint.</span>
             </p>
 
             <form method="post" action="https://formspree.io/f/YOUR_FORM_ID">
               <div class="two">
                 <div>
-                  <label for="name">Nombre</label>
-                  <input id="name" name="name" autocomplete="name" placeholder="Tu nombre…" required />
+                  <label for="name"><span class="en">Name</span><span class="es">Nombre</span></label>
+                  <input
+                    id="name"
+                    name="name"
+                    autocomplete="name"
+                    data-ph-en="Your name…"
+                    data-ph-es="Tu nombre…"
+                    placeholder="Your name…"
+                    required
+                  />
                 </div>
                 <div>
-                  <label for="company">Empresa (opcional)</label>
-                  <input id="company" name="company" autocomplete="organization" placeholder="Nombre de empresa…" />
+                  <label for="company"><span class="en">Company (optional)</span><span class="es">Empresa (opcional)</span></label>
+                  <input
+                    id="company"
+                    name="company"
+                    autocomplete="organization"
+                    data-ph-en="Company name…"
+                    data-ph-es="Nombre de empresa…"
+                    placeholder="Company name…"
+                  />
                 </div>
               </div>
 
               <div class="two">
                 <div>
                   <label for="telegram">Telegram</label>
-                  <input id="telegram" name="telegram" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@handle…" />
+                  <input
+                    id="telegram"
+                    name="telegram"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    data-ph-en="@handle…"
+                    data-ph-es="@handle…"
+                    placeholder="@handle…"
+                  />
                 </div>
                 <div>
                   <label for="email">Email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="vos@empresa.com…" required />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    spellcheck="false"
+                    data-ph-en="you@company.com…"
+                    data-ph-es="vos@empresa.com…"
+                    placeholder="you@company.com…"
+                    required
+                  />
                 </div>
               </div>
 
-              <label for="problem">¿Qué querés automatizar/monitorear?</label>
-              <textarea id="problem" name="problem" placeholder="Contá el proceso + herramientas (Sheets/Notion/HubSpot/etc.)…" required></textarea>
+              <label for="problem"><span class="en">What do you want to automate/monitor?</span><span class="es">¿Qué querés automatizar/monitorear?</span></label>
+              <textarea
+                id="problem"
+                name="problem"
+                data-ph-en="Describe the process + tools (Sheets/Notion/HubSpot/etc.)…"
+                data-ph-es="Contá el proceso + herramientas (Sheets/Notion/HubSpot/etc.)…"
+                placeholder="Describe the process + tools (Sheets/Notion/HubSpot/etc.)…"
+                required
+              ></textarea>
 
               <div class="two">
                 <div>
-                  <label for="urgency">Urgencia</label>
+                  <label for="urgency"><span class="en">Urgency</span><span class="es">Urgencia</span></label>
                   <select id="urgency" name="urgency" autocomplete="off">
-                    <option>Esta semana</option>
-                    <option>Este mes</option>
-                    <option>No urgente</option>
+                    <option data-en="This week" data-es="Esta semana">This week</option>
+                    <option data-en="This month" data-es="Este mes">This month</option>
+                    <option data-en="Not urgent" data-es="No urgente">Not urgent</option>
                   </select>
                 </div>
                 <div>
-                  <label for="budget">Presupuesto</label>
+                  <label for="budget"><span class="en">Budget</span><span class="es">Presupuesto</span></label>
                   <select id="budget" name="budget" autocomplete="off">
-                    <option>$750–$1,500 (Express 48h)</option>
-                    <option>$1.5k–$3k</option>
-                    <option>$3k+</option>
+                    <option data-en="$750–$1,500 (Express 48h)" data-es="$750–$1,500 (Express 48h)">$750–$1,500 (Express 48h)</option>
+                    <option data-en="$1.5k–$3k" data-es="$1.5k–$3k">$1.5k–$3k</option>
+                    <option data-en="$3k+" data-es="$3k+">$3k+</option>
                   </select>
                 </div>
               </div>
 
               <div class="two">
                 <div>
-                  <label for="package">Paquete</label>
+                  <label for="package"><span class="en">Package</span><span class="es">Paquete</span></label>
                   <select id="package" name="package" autocomplete="off">
-                    <option>Express Business — $1,500</option>
-                    <option>Express Pro — $999</option>
-                    <option>Express Personal — $750</option>
+                    <option data-en="Express Business — $1,500" data-es="Express Business — $1,500">Express Business — $1,500</option>
+                    <option data-en="Express Pro — $999" data-es="Express Pro — $999">Express Pro — $999</option>
+                    <option data-en="Express Personal — $750" data-es="Express Personal — $750">Express Personal — $750</option>
                   </select>
                 </div>
                 <div>
-                  <label for="network">Red preferida</label>
-                  <input id="network" name="network" autocomplete="off" placeholder="Arbitrum / Tron / Ethereum…" />
+                  <label for="network"><span class="en">Preferred network</span><span class="es">Red preferida</span></label>
+                  <input
+                    id="network"
+                    name="network"
+                    autocomplete="off"
+                    data-ph-en="Arbitrum / Tron / Ethereum…"
+                    data-ph-es="Arbitrum / Tron / Ethereum…"
+                    placeholder="Arbitrum / Tron / Ethereum…"
+                  />
                 </div>
               </div>
 
               <div class="two">
                 <div>
-                  <label for="payment">Pago</label>
+                  <label for="payment"><span class="en">Payment</span><span class="es">Pago</span></label>
                   <select id="payment" name="payment" autocomplete="off">
-                    <option>USDC</option>
-                    <option>USDT</option>
-                    <option>Invoice (fiat) + crypto settlement</option>
+                    <option data-en="USDC" data-es="USDC">USDC</option>
+                    <option data-en="USDT" data-es="USDT">USDT</option>
+                    <option data-en="Invoice (fiat) + crypto settlement" data-es="Invoice (fiat) + settlement en cripto">Invoice (fiat) + crypto settlement</option>
                   </select>
                 </div>
                 <div>
-                  <label for="timezone">Zona horaria</label>
-                  <input id="timezone" name="timezone" autocomplete="off" placeholder="GMT-6 / Canary…" />
+                  <label for="timezone"><span class="en">Timezone</span><span class="es">Zona horaria</span></label>
+                  <input
+                    id="timezone"
+                    name="timezone"
+                    autocomplete="off"
+                    data-ph-en="e.g., GMT-6 / Canary…"
+                    data-ph-es="Ej: GMT-6 / Canary…"
+                    placeholder="e.g., GMT-6 / Canary…"
+                  />
                 </div>
               </div>
 
               <div class="btns">
-                <button class="btn primary" type="submit">Enviar</button>
-                <a class="btn" href="#paquetes">Volver a paquetes</a>
+                <button class="btn primary" type="submit"><span class="en">Send</span><span class="es">Enviar</span></button>
+                <a class="btn" href="#packages"><span class="en">Back to packages</span><span class="es">Volver a paquetes</span></a>
               </div>
             </form>
           </div>
@@ -704,9 +725,78 @@
 
         <footer>
           <div class="hr"></div>
-          <p class="small">© OpenClaw Setup Express — draft landing. Reemplazá placeholders (Form ID, wallets) antes de publicar.</p>
+          <p class="small">
+            <span class="en">© OpenClaw Setup Express — draft landing. Replace placeholders (Form ID, wallets) before publishing.</span>
+            <span class="es">© OpenClaw Setup Express — draft landing. Reemplazá placeholders (Form ID, wallets) antes de publicar.</span>
+          </p>
         </footer>
       </main>
     </div>
+
+    <script>
+      (function () {
+        const supported = ["en", "es"];
+
+        function setLang(lang) {
+          const next = supported.includes(lang) ? lang : "en";
+          const html = document.documentElement;
+          html.dataset.lang = next;
+          html.lang = next;
+
+          try {
+            localStorage.setItem("lang", next);
+          } catch (e) {}
+
+          document.querySelectorAll(".langBtn").forEach((btn) => {
+            btn.setAttribute("aria-pressed", String(btn.dataset.lang === next));
+          });
+
+          // swap placeholders
+          document
+            .querySelectorAll("[data-ph-en]")
+            .forEach((el) => {
+              const ph = next === "es" ? el.getAttribute("data-ph-es") : el.getAttribute("data-ph-en");
+              if (ph) el.setAttribute("placeholder", ph);
+            });
+
+          // swap select option labels
+          document.querySelectorAll("option[data-en]").forEach((opt) => {
+            opt.textContent = next === "es" ? opt.getAttribute("data-es") : opt.getAttribute("data-en");
+          });
+
+          // title + description
+          const title =
+            next === "es"
+              ? "OpenClaw Setup Express (48h) — Tu bot operativo en Telegram"
+              : "OpenClaw Setup Express (48h) — Your operational Telegram bot";
+          document.title = title;
+
+          const desc = document.querySelector('meta[name="description"]');
+          if (desc) {
+            desc.setAttribute(
+              "content",
+              next === "es"
+                ? "En 48 horas te montamos tu bot operativo en Telegram (OpenClaw) con 2 automatizaciones, alertas y handoff. Precio fijo. Pagos en USDC/USDT."
+                : "In 48 hours, we set up your operational Telegram bot (OpenClaw) with 2 automations, alerts, and handoff. Fixed price. Pay in USDC/USDT."
+            );
+          }
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get("lang");
+
+        let saved = null;
+        try {
+          saved = localStorage.getItem("lang");
+        } catch (e) {}
+
+        // default to English
+        setLang(urlLang || saved || "en");
+
+        document.querySelectorAll(".langBtn").forEach((btn) => {
+          btn.addEventListener("click", () => setLang(btn.dataset.lang));
+        });
+      })();
+    </script>
   </body>
 </html>
